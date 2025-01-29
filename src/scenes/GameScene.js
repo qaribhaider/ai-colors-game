@@ -1,16 +1,19 @@
 import Phaser from 'phaser';
 import WebFontLoader from 'webfontloader';
 import { COLORS_ARRAY } from '../config/colors';
+import { GAME_CONFIG } from '../config/game';
+import { RINGS_CONFIG } from '../config/rings';
 import ScoreManager from '../services/ScoreManager';
+
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super('GameScene');
     this.score = 0;
-    this.currentTimer = 10000;
-    this.initialTimer = 10000;
-    this.timerDecrement = 500;
-    this.minTimer = 1500;
-    this.scorePerClick = 5;
+    this.currentTimer = GAME_CONFIG.INITIAL_TIMER;
+    this.initialTimer = GAME_CONFIG.INITIAL_TIMER;
+    this.timerDecrement = GAME_CONFIG.TIMER_DECREMENT;
+    this.minTimer = GAME_CONFIG.MIN_TIMER;
+    this.scorePerClick = GAME_CONFIG.SCORE_PER_CLICK;
     this.colors = COLORS_ARRAY;
     this.targetColors = [];
     this.circles = [];
@@ -25,7 +28,7 @@ export default class GameScene extends Phaser.Scene {
       this.scene.pause();
       const centerX = this.cameras.main.centerX;
       const centerY = this.cameras.main.centerY;
-      
+
       // Display error message to user
       this.add.text(centerX, centerY, 'Oops! Something went wrong.\nTry refreshing the page.', {
         fontSize: '24px',
@@ -68,9 +71,11 @@ export default class GameScene extends Phaser.Scene {
   async create() {
     try {
       await this.preload();
-      this.currentTimer = 10000;
-      this.initialTimer = 10000;
-      
+      this.score = 0;
+      this.currentTimer = GAME_CONFIG.INITIAL_TIMER;
+      this.initialTimer = GAME_CONFIG.INITIAL_TIMER;
+      this.elapsedTime = 0;
+
       this.add.text(20, 80, 'COLORS', {
         fontSize: '42px',
         fontFamily: 'Exo2-ExtraBold',
@@ -109,8 +114,8 @@ export default class GameScene extends Phaser.Scene {
 
   createCirclesGrid() {
     try {
-      const circleRadius = 28;
-      const ringThickness = 12;
+      const circleRadius = RINGS_CONFIG.CIRCLE_RADIUS;
+      const ringThickness = RINGS_CONFIG.RING_THICKNESS;
       const spacing = 75;
       const startX = 45;
       const startY = 200;
@@ -121,13 +126,13 @@ export default class GameScene extends Phaser.Scene {
           const x = startX + (col * spacing);
           const y = startY + (row * spacing);
           const color = this.colors[Phaser.Math.Between(0, this.colors.length - 1)];
-          
+
           const ring = this.add.circle(x, y, circleRadius, color);
           const innerCircle = this.add.circle(x, y, circleRadius - ringThickness, 0xf5f5f5);
-          
+
           ring.setInteractive();
           ring.on('pointerdown', () => this.handleCircleClick(row, col));
-          
+
           this.circles[row][col] = ring;
         }
       }
@@ -139,7 +144,7 @@ export default class GameScene extends Phaser.Scene {
   handleCircleClick(row, col) {
     try {
       const clickedColor = this.circles[row][col].fillColor;
-      
+
       if (this.targetColors.includes(clickedColor)) {
         this.score += this.scorePerClick;
         this.scoreText.setText(this.score.toString());
@@ -151,7 +156,7 @@ export default class GameScene extends Phaser.Scene {
         this.replaceRowColors(rowToUpdate);
 
         this.initialTimer = Math.max(this.minTimer, this.initialTimer - this.timerDecrement);
-        
+
         this.currentTimer = this.initialTimer;
         this.elapsedTime = 0;
         this.timerBar.width = 350;
@@ -215,7 +220,7 @@ export default class GameScene extends Phaser.Scene {
     try {
       this.elapsedTime += 100;
       const progress = 350 * (1 - (this.elapsedTime / this.currentTimer));
-      
+
       if (progress <= 0) {
         this.gameOver();
         return;
@@ -231,7 +236,7 @@ export default class GameScene extends Phaser.Scene {
   generateTargetColors() {
     try {
       this.targetColors = [];
-      
+
       while (this.targetColors.length < 2) {
         const randomColor = this.colors[Phaser.Math.Between(0, this.colors.length - 1)];
         if (!this.targetColors.includes(randomColor)) {

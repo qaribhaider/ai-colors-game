@@ -1,0 +1,4 @@
+export const RINGS_CONFIG = {
+  CIRCLE_RADIUS: 28,
+  RING_THICKNESS: 12
+};

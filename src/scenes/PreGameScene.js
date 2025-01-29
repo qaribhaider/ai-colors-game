@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import WebFontLoader from 'webfontloader';
 import { COLORS_ARRAY } from '../config/colors';
+import { RINGS_CONFIG } from '../config/rings';
 import ColorSelector from '../utils/ColorSelector';
 export default class PreGameScene extends Phaser.Scene {
   constructor() {
@@ -61,8 +62,8 @@ export default class PreGameScene extends Phaser.Scene {
     
     for (let i = 0; i < 5; i++) {
       const x = startX + (i * spacing);
-      const circleRadius = 28;
-      const ringThickness = 12;
+      const circleRadius = RINGS_CONFIG.CIRCLE_RADIUS;
+      const ringThickness = RINGS_CONFIG.RING_THICKNESS;
       
       // Create outer circle (ring)
       this.add.circle(x, circleY, circleRadius, this.colors[i]);
