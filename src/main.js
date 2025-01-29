@@ -17,8 +17,7 @@ const config = {
     width: 384, // Standard mobile width
     height: 824 // Standard mobile height
   },
-  // scene: [TitleScene, PreGameScene, GameScene, GameOverScene]
-  scene: [GameOverScene, GameScene, TitleScene, PreGameScene]
+  scene: [TitleScene, PreGameScene, GameScene, GameOverScene]
 };
 
 const game = new Phaser.Game(config);
