@@ -71,19 +71,19 @@ export default class GameScene extends Phaser.Scene {
       this.currentTimer = 10000;
       this.initialTimer = 10000;
       
-      this.add.text(20, 100, 'COLORS', {
+      this.add.text(20, 80, 'COLORS', {
         fontSize: '42px',
         fontFamily: 'Exo2-ExtraBold',
         color: '#000000'
       }).setOrigin(0, 0.5);
 
-      this.scoreText = this.add.text(370, 100, '0', {
+      this.scoreText = this.add.text(370, 80, '0', {
         fontSize: '42px',
         fontFamily: 'Exo2-ExtraBold',
         color: '#000000'
       }).setOrigin(1, 0.5);
 
-      this.timerBar = this.add.rectangle(370, 160, 350, 20, 0x000000);
+      this.timerBar = this.add.rectangle(370, 120, 350, 20, 0x000000);
       this.timerBar.setOrigin(1, 0);
 
       this.generateTargetColors();
@@ -113,9 +113,9 @@ export default class GameScene extends Phaser.Scene {
       const ringThickness = 12;
       const spacing = 75;
       const startX = 45;
-      const startY = 250;
+      const startY = 200;
 
-      for (let row = 0; row < 7; row++) {
+      for (let row = 0; row < 6; row++) {
         this.circles[row] = [];
         for (let col = 0; col < 5; col++) {
           const x = startX + (col * spacing);
@@ -147,7 +147,7 @@ export default class GameScene extends Phaser.Scene {
         const newClickedColor = this.colors[Phaser.Math.Between(0, this.colors.length - 1)];
         this.circles[row][col].setFillStyle(newClickedColor);
 
-        const rowToUpdate = row >= 6 ? 1 : (row + 2) % 7;
+        const rowToUpdate = row >= 6 ? 1 : (row + 2) % 6;
         this.replaceRowColors(rowToUpdate);
 
         this.initialTimer = Math.max(this.minTimer, this.initialTimer - this.timerDecrement);

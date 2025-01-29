@@ -27,14 +27,14 @@ export default class PreGameScene extends Phaser.Scene {
     const centerY = this.cameras.main.centerY;
 
     // Add tutorial title
-    this.add.text(centerX, centerY - 180, 'HOW TO PLAY', {
+    this.add.text(centerX, centerY - 220, 'HOW TO PLAY', {
       fontSize: '42px',
       fontFamily: 'Exo2-ExtraBold',
       color: '#000000'
     }).setOrigin(0.5);
 
     // Add instruction text
-    this.add.text(centerX, centerY - 100, 'Match the colors shown at the top \n of the screen with circles \n in the grid to score points!', {
+    this.add.text(centerX, centerY - 140, 'Match the colors shown at the top \n of the screen with circles \n in the grid to score points!', {
       fontSize: '18px',
       fontFamily: 'Tahoma',
       color: '#000000',
@@ -47,7 +47,7 @@ export default class PreGameScene extends Phaser.Scene {
     targetColors.forEach((color, index) => {
       this.add.rectangle(
         centerX - (barWidth/2) + (index * barWidth),
-        centerY,
+        centerY - 40,
         barWidth - 10,
         20,
         color
@@ -55,7 +55,7 @@ export default class PreGameScene extends Phaser.Scene {
     });
 
     // Add example circles
-    const circleY = centerY + 100;
+    const circleY = centerY + 60;
     const spacing = 70;
     const startX = centerX - (spacing * 2);
     
@@ -71,7 +71,7 @@ export default class PreGameScene extends Phaser.Scene {
     }
 
     // Add start button
-    const startButton = this.add.text(centerX, centerY + 200, 'START', {
+    const startButton = this.add.text(centerX, centerY + 160, 'START', {
       fontSize: '32px',
       fontFamily: 'Exo2-ExtraBold',
       color: '#000000',

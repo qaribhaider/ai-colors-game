@@ -28,7 +28,7 @@ export default class GameOverScene extends Phaser.Scene {
     const centerY = this.cameras.main.centerY;
 
     // Game Over text
-    this.add.text(centerX, centerY - 120, 'GAME OVER', {
+    this.add.text(centerX, centerY - 160, 'GAME OVER', {
       fontSize: '48px',
       fontFamily: 'Exo2-ExtraBold',
       color: '#000000',
@@ -37,21 +37,21 @@ export default class GameOverScene extends Phaser.Scene {
     }).setOrigin(0.5);
 
     // Recent Score
-    this.add.text(centerX, centerY - 20, `Score: ${this.scoreManager.getRecentScore()}`, {
+    this.add.text(centerX, centerY - 60, `Score: ${this.scoreManager.getRecentScore()}`, {
       fontSize: '32px',
       fontFamily: 'Exo2-ExtraBold',
       color: '#000000'
     }).setOrigin(0.5);
 
     // Highest Score
-    this.add.text(centerX, centerY + 40, `Best: ${this.scoreManager.getHighestScore()}`, {
+    this.add.text(centerX, centerY, `Best: ${this.scoreManager.getHighestScore()}`, {
       fontSize: '32px',
       fontFamily: 'Exo2-ExtraBold',
       color: '#000000'
     }).setOrigin(0.5);
 
     // Play Again button
-    const playAgainButton = this.add.text(centerX, centerY + 120, 'PLAY AGAIN', {
+    const playAgainButton = this.add.text(centerX, centerY + 80, 'PLAY AGAIN', {
       fontSize: '32px',
       fontFamily: 'Exo2-ExtraBold',
       color: '#000000',

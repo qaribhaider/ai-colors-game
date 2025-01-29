@@ -14,10 +14,11 @@ const config = {
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
-    width: 390, // Standard mobile width
-    height: 844 // Standard mobile height
+    width: 384, // Standard mobile width
+    height: 824 // Standard mobile height
   },
-  scene: [TitleScene, PreGameScene, GameScene, GameOverScene]
+  // scene: [TitleScene, PreGameScene, GameScene, GameOverScene]
+  scene: [GameOverScene, GameScene, TitleScene, PreGameScene]
 };
 
 const game = new Phaser.Game(config);

@@ -25,7 +25,7 @@ export default class TitleScene extends Phaser.Scene {
 
     // Create game logo
     const color = '#' + COLORS_ARRAY[Phaser.Math.Between(0, COLORS_ARRAY.length - 1)].toString(16).padStart(6, '0');
-    this.add.text(centerX, centerY - 80, 'COLORS', {
+    this.add.text(centerX, centerY - 130, 'COLORS', {
       fontSize: '64px',
       fontFamily: 'Exo2-ExtraBold',
       color: color,
@@ -34,14 +34,14 @@ export default class TitleScene extends Phaser.Scene {
     }).setOrigin(0.5);
 
     // Add tagline
-    this.add.text(centerX, centerY, 'Fast, Fun, Addictive Game', {
+    this.add.text(centerX, centerY - 30, 'Fast, Fun, Addictive Game', {
       fontSize: '24px',
       fontFamily: 'Exo2-ExtraBold',
       color: '#000000'
     }).setOrigin(0.5);
 
     // Add play button
-    const playButton = this.add.text(centerX, centerY + 100, 'PLAY', {
+    const playButton = this.add.text(centerX, centerY + 70, 'PLAY', {
       fontSize: '32px',
       fontFamily: 'Exo2-ExtraBold',
       color: '#000000',
